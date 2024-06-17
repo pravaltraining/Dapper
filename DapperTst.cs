@@ -11,18 +11,21 @@ public class DapperTSt
     {
         using (var connection = new SqlConnection(connectionString))
         {
-            var sql = "SELECT * FROM Orders";
+            var sql = "SELECT Count(*) FROM Orders";
             var books = connection.ExecuteScalar(sql);
             Console.WriteLine($"Total products: {books}");
+            // will give an single colum single row like res etc with an count 
+
+
 
         }
 
         using (var connection = new SqlConnection(connectionString))
         {
-            var sql = "SELECT res(*) FROM Orders";
+            var sql = "SELECT count(*) FROM Orders";
             var res = connection.ExecuteScalar<int>(sql);
             Console.WriteLine($"Total products: {res}");
-            // will give an single colum single row like res etc with an count 
+            // will give an single colum single row like res etc with an count with integer 
         }
 
     }
@@ -37,7 +40,7 @@ public class DapperTSt
             //var res = connection.QuerySingle<AddingNewEventArgs class obj>(sql);
 
             Console.WriteLine($"Total products: {res}");
-            // will give an single colum single row like res etc with an type 
+            // will give an  single row like res etc with an type 
         }
         using (var connection = new SqlConnection(connectionString))
         {
@@ -45,7 +48,7 @@ public class DapperTSt
             var res = connection.QuerySingleOrDefault(sql);
 
             Console.WriteLine($"Total products: {res}");
-            // will give an single colum single row like count 
+            // will give an  single row if no rows are matched then it returns default value null
         }
     }
 
@@ -70,7 +73,7 @@ public class DapperTSt
 
     }
 
-    public void QQuery()
+    public void Query()
     {
         using (var SqlConnection = new SqlConnection(connectionString))
         {
@@ -113,6 +116,7 @@ public class DapperTSt
                 }
 
             }
+            // query multipe is used for selecting multiple tables
         }
     }
 
@@ -128,6 +132,7 @@ public class DapperTSt
                 Console.WriteLine(item);
 
             }
+            // returns all the selected colum names
         }
 
 
@@ -142,5 +147,6 @@ public class DapperTSt
             Console.WriteLine("done");
            
         }
+        // it doesnt return any values 
     }
 }
